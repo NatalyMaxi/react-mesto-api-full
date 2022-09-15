@@ -12,6 +12,7 @@ class Api {
    //получим информацию о пользователе
    getUserInfo() {
       return fetch(`${this._url}/users/me`, {
+         credentials: 'include',
          headers: this._headers
       })
          .then(this._checkResponse);
@@ -21,6 +22,7 @@ class Api {
    updateUserInfo(data) {
       return fetch(`${this._url}/users/me`, {
          method: 'PATCH',
+         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             name: data.username,
@@ -34,6 +36,7 @@ class Api {
    updateAvatar(data) {
       return fetch(`${this._url}/users/me/avatar`, {
          method: 'PATCH',
+         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             avatar: data.avatar
@@ -45,6 +48,7 @@ class Api {
    //получим карточки
    getInitialCards() {
       return fetch(`${this._url}/cards`, {
+         credentials: 'include',
          headers: this._headers
       })
          .then(this._checkResponse)
@@ -54,6 +58,7 @@ class Api {
    addNewCard(data) {
       return fetch(`${this._url}/cards`, {
          method: 'POST',
+         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             name: data.name,
@@ -67,6 +72,7 @@ class Api {
    deleteCard(_id) {
       return fetch(`${this._url}/cards/${_id}`, {
          method: 'DELETE',
+         credentials: 'include',
          headers: this._headers
       })
          .then(this._checkResponse)
@@ -78,12 +84,14 @@ class Api {
       if (isLiked) {
          return fetch(`${this._url}/cards/${_id}/likes`, {
             method: 'PUT',
+            credentials: 'include',
             headers: this._headers
          })
             .then(this._checkResponse)
       } else {
          return fetch(`${this._url}/cards/${_id}/likes`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: this._headers
          })
             .then(this._checkResponse)

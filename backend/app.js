@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config(); // Dotenv — это модуль с нулевой зависимостью, который загружает переменные среды из .envфайла в файлы process.env.
 const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
+const { options } = require('./middlewares/cors');
 const { createUser, login } = require('./controllers/users');
 const errorHandler = require('./middlewares/errorHandler');
 const {
@@ -17,22 +18,6 @@ const {
 
 const NotFoundError = require('./Error/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-const options = {
-  origin: {
-    origin: [ // Массив доменов, с которых разрешены кросс-доменные запросы.
-      'http://localhost:3000',
-      'https://domainname.nataly.nomoredomains.sbs',
-      'https://praktikum.tk',
-      'http://praktikum.tk',
-      'localhost:3000',
-    ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // настраивает заголовок CORS Access-Control-Allow-Methods.
-    preflightContinue: false, // передать предварительный ответ CORS следующему обработчику.
-    optionsSuccessStatus: 204, // Предоставляет код состояния для успешных OPTIONSзапросов.
-  },
-  credentials: true, // сообщает браузерам, следует ли предоставлять ответ внешнему коду JS.
-};
 
 const { PORT = 3000 } = process.env;
 
