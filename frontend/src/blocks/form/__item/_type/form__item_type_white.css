@@ -1,0 +1,20 @@
+.form__item_type_white {
+   color: #ffffff;
+   border-bottom: 2px solid rgba(204, 204, 204, 1);
+   background: #000000;
+}
+
+.form__item_type_white::placeholder {
+   color: #cccccc;
+}
+
+.form__item_type_whiteform__item::-webkit-input-placeholder {
+   color: #cccccc;
+}
+
+.form__item_type_white::-moz-placeholder {
+   color: #cccccc;
+}
+.form__item_type_white::-ms-input-placeholder {
+   color: #cccccc;
+}

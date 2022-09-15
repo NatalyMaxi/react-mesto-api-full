@@ -1,0 +1,20 @@
+.form__button_type_white {
+   background: #ffffff;
+   color: #000000;
+   margin-top: 216px;
+   width: 100%;
+
+}
+
+@media screen and (max-width: 767px) {
+   .form__button_type_white {
+      background: #ffffff;
+      color: #000000;
+      margin-top: 173px;
+   }
+}
+
+.form__button_type_white:hover {
+   opacity: .85;
+   cursor: pointer;
+}

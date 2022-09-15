@@ -1,0 +1,6 @@
+.list__image {
+   width: 282px;
+   object-fit: cover;
+   height: 282px;
+   cursor: pointer;
+}

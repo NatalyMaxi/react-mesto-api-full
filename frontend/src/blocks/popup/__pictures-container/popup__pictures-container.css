@@ -1,0 +1,10 @@
+.popup__pictures-container {
+   display: flex;
+   position: relative;
+   margin: auto;
+   box-sizing: border-box;
+   border-radius: 0px;
+   padding: 0;
+   border: none;
+   cursor: default;
+}

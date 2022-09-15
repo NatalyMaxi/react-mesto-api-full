@@ -1,0 +1,18 @@
+.list__btn {
+   background-image: url(../../../images/Group.svg);
+   top: 20px;
+   right: 20px;
+   width: 18px;
+   height: 19px;
+   border: none;
+   background-color: transparent;
+   background-repeat: no-repeat;
+   background-position: center;
+   padding: 0;
+   cursor: pointer;
+   transition: 0.5s ease;
+   position: absolute;
+}
+.list__btn:hover {
+   opacity: 0.6;
+}
