@@ -42,7 +42,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, submitTitle }) {
          <input
             id="name"
             minLength="2"
-            maxLength="40"
+            maxLength="30"
             required
             type="text"
             className="form__item"
@@ -55,7 +55,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, submitTitle }) {
 
          <input id="info"
             minLength="2"
-            maxLength="200"
+            maxLength="30"
             required
             type="text"
             className="form__item"

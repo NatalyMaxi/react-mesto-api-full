@@ -1,12 +1,14 @@
 const express = require('express');
 
 require('dotenv').config(); // Dotenv — это модуль с нулевой зависимостью, который загружает переменные среды из .envфайла в файлы process.env.
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet'); // помогает защитить приложение от некоторых широко известных веб-уязвимостей путем соответствующей настройки заголовков HTTP
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
+const { options } = require('./middlewares/cors');
 const { createUser, login } = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
@@ -19,6 +21,7 @@ const NotFoundError = require('./Error/NotFoundError');
 
 const { PORT = 3001 } = process.env;
 const app = express();
+app.use('*', cors(options));
 app.use(cookieParser());
 
 app.use(helmet());
