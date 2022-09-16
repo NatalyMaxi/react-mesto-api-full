@@ -1,81 +1,72 @@
+import { checkResponse } from './constants';
+
 class Api {
    constructor(options) {
       this._url = options.url;
       this._headers = options.headers;
    }
 
-   //проверим ответ 
-   _checkResponse(res) {
-      return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-   }
-
    //получим информацию о пользователе
    getUserInfo() {
       return fetch(`${this._url}/users/me`, {
-         credentials: 'include',
          headers: this._headers
       })
-         .then(this._checkResponse);
+         .then((res) => checkResponse(res));
    }
 
    //обновим информацию пользователя
    updateUserInfo(data) {
       return fetch(`${this._url}/users/me`, {
          method: 'PATCH',
-         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             name: data.username,
             about: data.job
          })
       })
-         .then(this._checkResponse)
+         .then((res) => checkResponse(res));
    }
 
    //обновим аватар пользователя
    updateAvatar(data) {
       return fetch(`${this._url}/users/me/avatar`, {
          method: 'PATCH',
-         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             avatar: data.avatar
          })
       })
-         .then(this._checkResponse)
+         .then((res) => checkResponse(res));
    }
 
    //получим карточки
    getInitialCards() {
       return fetch(`${this._url}/cards`, {
-         credentials: 'include',
          headers: this._headers
       })
-         .then(this._checkResponse)
+         .then((res) => checkResponse(res));
    }
 
    //добавим новую карточку
    addNewCard(data) {
       return fetch(`${this._url}/cards`, {
          method: 'POST',
-         credentials: 'include',
          headers: this._headers,
          body: JSON.stringify({
             name: data.name,
             link: data.link
          })
       })
-         .then(this._checkResponse)
+         .then((res) => checkResponse(res));
    }
 
    //удалим карточку
    deleteCard(_id) {
       return fetch(`${this._url}/cards/${_id}`, {
          method: 'DELETE',
-         credentials: 'include',
          headers: this._headers
       })
-         .then(this._checkResponse)
+         .then((res) => checkResponse(res));
    }
 
    //статус лайка/дизлайка карточки
@@ -84,17 +75,15 @@ class Api {
       if (isLiked) {
          return fetch(`${this._url}/cards/${_id}/likes`, {
             method: 'PUT',
-            credentials: 'include',
             headers: this._headers
          })
-            .then(this._checkResponse)
+            .then((res) => checkResponse(res));
       } else {
          return fetch(`${this._url}/cards/${_id}/likes`, {
             method: 'DELETE',
-            credentials: 'include',
             headers: this._headers
          })
-            .then(this._checkResponse)
+            .then((res) => checkResponse(res));
       }
    }
 }

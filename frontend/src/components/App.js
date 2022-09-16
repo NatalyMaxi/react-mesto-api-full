@@ -168,10 +168,7 @@ function App() {
         localStorage.setItem('jwt', data.token);
         history.push('/');
       })
-      .catch((err) => {
-        console.log(err);
-        handleInfoTooltip();
-      });
+      .catch((err) => console.log(err));
   };
 
   function handleTokenCheck() {
@@ -191,14 +188,13 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
       history.push('/');
     }
-  }, [isLoggedIn, history]);
+  }, [isLoggedIn]);
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
