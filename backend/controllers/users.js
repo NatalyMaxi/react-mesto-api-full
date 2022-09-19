@@ -7,27 +7,45 @@ const ConflictError = require('../Error/ConflictError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
+// module.exports.login = (req, res, next) => {
+//   const { email, password } = req.body;
+//   return User.findUserByCredentials(email, password)
+//     .then((user) => {
+//       const token = jwt.sign(
+//         { _id: user._id },
+//         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+//         { expiresIn: '7d' },
+//       );
+//       res
+//         .cookie('jwt', token, {
+//           maxAge: 3600000 * 24 * 7,
+//           httpOnly: true,
+//         })
+//         .send({ // получаем объект пользователя
+//           name: user.name,
+//           about: user.about,
+//           avatar: user.avatar,
+//           email: user.email,
+//           _id: user._id,
+//         });
+//     })
+//     .catch(next);
+// };
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
+      // проверим существует ли такой email или пароль
+      if (!user || !password) {
+        return next(new CastError('Неверный email или пароль.'));
+      }
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-        })
-        .send({ // получаем объект пользователя
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
-          _id: user._id,
-        });
+      return res.send({ token });
     })
     .catch(next);
 };

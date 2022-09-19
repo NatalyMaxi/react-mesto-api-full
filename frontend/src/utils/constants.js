@@ -5,5 +5,3 @@ export const checkResponse = (res) => {
          new Error(`Ошибка ${res.status}: ${res.statusText}`)
       );
 };
-
-export const BASE_URL = 'https://auth.nomoreparties.co';

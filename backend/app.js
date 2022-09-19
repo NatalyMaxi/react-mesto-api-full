@@ -1,8 +1,6 @@
-const express = require('express');
-
 require('dotenv').config(); // Dotenv — это модуль с нулевой зависимостью, который загружает переменные среды из .envфайла в файлы process.env.
+const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const helmet = require('helmet'); // помогает защитить приложение от некоторых широко известных веб-уязвимостей путем соответствующей настройки заголовков HTTP
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -21,13 +19,9 @@ const NotFoundError = require('./Error/NotFoundError');
 
 const { PORT = 3001 } = process.env;
 const app = express();
-app.use('*', cors(options));
-app.use(cookieParser());
-
 app.use(helmet());
-app.disable('x-powered-by'); // отключает заголовок X-Powered-By (заголовок обычно указывает платформу приложений, на которой работает сервер)
 
-mongoose.connect('mongodb://localhost:27017/mestodb ', {
+mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -35,6 +29,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb ', {
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('*', cors(options));
 
 app.use(requestLogger); // подключаем логгер запросов
 

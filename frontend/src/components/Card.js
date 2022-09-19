@@ -18,23 +18,34 @@ function Card({ card, onCardClick, onCardLike, onCardDeleteClick }) {
    }
 
    // Определяем, являемся ли мы владельцем текущей карточки
-   const isOwn = card.owner._id === currentUserContext._id;
+   const isOwn = card.owner === currentUserContext._id;
 
    // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-   const isLiked = card.likes.some(item => item._id === currentUserContext._id);
+   const isLiked = card.likes.some((i) => i === currentUserContext._id);
 
    const cardLikeButtonClassName = `list__toggle ${isLiked ? 'list__toggle_active' : ''}`;
 
    return (
       <li className="list__items">
-         <img src={card.link} alt={card.name} className="list__image" onClick={handleClick} />
+         <img src={card.link}
+            alt={card.name}
+            className="list__image"
+            onClick={handleClick}
+         />
          <div className="list__item">
             <h2 className="list__title">{card.name}</h2>
             <div className="list__like-container">
-               <button className={cardLikeButtonClassName} type="button" aria-label="Отметить" onClick={handleLikeClick}></button>
+               <button
+                  className={cardLikeButtonClassName}
+                  type="button"
+                  aria-label="Отметить"
+                  onClick={handleLikeClick} />
                <span className="list__like-counter">{card.likes.length}</span>
             </div>
-            {isOwn && <button type="button" className="list__btn" aria-label="Удалить" onClick={handleDeleteClick}
+            {isOwn && <button
+               type="button"
+               className="list__btn"
+               aria-label="Удалить" onClick={handleDeleteClick}
                />
             }
          </div>

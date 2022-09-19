@@ -1,24 +1,29 @@
 import { checkResponse } from './constants';
-
 class Api {
    constructor(options) {
-      this._url = options.url;
-      this._headers = options.headers;
+      this._baseUrl = options.baseUrl;
    }
 
    //получим информацию о пользователе
-   getUserInfo() {
-      return fetch(`${this._url}/users/me`, {
-         headers: this._headers
+   getUserInfo(jwt) {
+      return fetch(`${this._baseUrl}/users/me`, {
+         credentials: 'include',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         }
       })
          .then((res) => checkResponse(res));
    }
 
    //обновим информацию пользователя
-   updateUserInfo(data) {
-      return fetch(`${this._url}/users/me`, {
+   updateUserInfo(data, jwt) {
+      return fetch(`${this._baseUrl}/users/me`, {
          method: 'PATCH',
-         headers: this._headers,
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         },
          body: JSON.stringify({
             name: data.username,
             about: data.job
@@ -28,10 +33,13 @@ class Api {
    }
 
    //обновим аватар пользователя
-   updateAvatar(data) {
-      return fetch(`${this._url}/users/me/avatar`, {
+   updateAvatar(data, jwt) {
+      return fetch(`${this._baseUrl}/users/me/avatar`, {
          method: 'PATCH',
-         headers: this._headers,
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         },
          body: JSON.stringify({
             avatar: data.avatar
          })
@@ -40,59 +48,62 @@ class Api {
    }
 
    //получим карточки
-   getInitialCards() {
-      return fetch(`${this._url}/cards`, {
-         headers: this._headers
+   getInitialCards(jwt) {
+      return fetch(`${this._baseUrl}/cards`, {
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         }
       })
          .then((res) => checkResponse(res));
    }
 
    //добавим новую карточку
-   addNewCard(data) {
-      return fetch(`${this._url}/cards`, {
+   addNewCard(data, jwt) {
+      return fetch(`${this._baseUrl}/cards`, {
          method: 'POST',
-         headers: this._headers,
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         },
          body: JSON.stringify({
             name: data.name,
             link: data.link
-         })
+         }),
       })
          .then((res) => checkResponse(res));
    }
 
    //удалим карточку
-   deleteCard(_id) {
-      return fetch(`${this._url}/cards/${_id}`, {
+   deleteCard(cardId, jwt) {
+      return fetch(`${this._baseUrl}/cards/${cardId}`, {
          method: 'DELETE',
-         headers: this._headers
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         }
       })
          .then((res) => checkResponse(res));
    }
 
    //статус лайка/дизлайка карточки
-   changeLikeCardStatus(_id, isLiked) {
-
-      if (isLiked) {
-         return fetch(`${this._url}/cards/${_id}/likes`, {
-            method: 'PUT',
-            headers: this._headers
-         })
-            .then((res) => checkResponse(res));
-      } else {
-         return fetch(`${this._url}/cards/${_id}/likes`, {
-            method: 'DELETE',
-            headers: this._headers
-         })
-            .then((res) => checkResponse(res));
-      }
+   changeLikeCardStatus(cardId, isLiked, jwt) {
+      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+         method: `${!isLiked ? 'DELETE' : 'PUT'}`,
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+         },
+      }).then((res) => checkResponse(res));
    }
 }
 
+const BASE_URL = 'http://localhost:3001';
 const api = new Api({
-   url: 'https://mesto.nomoreparties.co/v1/cohort-43',
+   baseUrl: BASE_URL,
    headers: {
-      authorization: 'b10a53e7-258a-42fe-a6a2-62c2a434b14a',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
    }
 })
 
