@@ -35,7 +35,7 @@ function App() {
   const [editProfilePopupSubmitTitle, setEditProfilePopupSubmitTitle] = useState('Сохранить');
   const [editAvatarPopupSubmitTitle, setEditAvatarPopupSubmitTitle] = useState('Сохранить');
   const [addPlacePopupSubmitTitle, setAddPlacePopupSubmitTitle] = useState('Создать');
-  const [confirmationPopupSubmitTitle, setConfirmationPopupSubmitTitle] = useState('Да'); 
+  const [confirmationPopupSubmitTitle, setConfirmationPopupSubmitTitle] = useState('Да');
 
   useEffect(() => {
     handleTokenCheck();
@@ -89,7 +89,7 @@ function App() {
       })
       .finally(() => {
         setEditProfilePopupSubmitTitle('Сохранить')
-    })
+      })
   };
 
   function handleUpdateAvatar(data) {
@@ -221,24 +221,6 @@ function App() {
     setCurrentUser({});
     setUserEmail('');
   };
-  // useEffect(() => {
-  //   const jwt = localStorage.getItem('jwt');
-  //   handleTokenCheck()
-  //   api
-  //     .getUserInfo(jwt)
-  //     .then((data) => {
-  //       setCurrentUser(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(`Ошибка: ${err}`);
-  //     });
-  //   api
-  //     .getInitialCards(jwt)
-  //     .then((res) => {
-  //       setCards(res.data)
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

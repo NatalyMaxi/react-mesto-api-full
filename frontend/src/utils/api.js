@@ -1,4 +1,4 @@
-import { checkResponse } from './constants';
+import { checkResponse, BASE_URL } from './constants';
 class Api {
    constructor(options) {
       this._baseUrl = options.baseUrl;
@@ -98,7 +98,6 @@ class Api {
    }
 }
 
-const BASE_URL = 'http://localhost:3001';
 const api = new Api({
    baseUrl: BASE_URL,
    headers: {

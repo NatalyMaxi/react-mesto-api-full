@@ -1,6 +1,4 @@
-import { checkResponse} from './constants';
-
-const BASE_URL = 'http://localhost:3001';
+import { checkResponse, BASE_URL } from './constants';
 
 const headers = {
    Accept: 'application/json',
