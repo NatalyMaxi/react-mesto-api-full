@@ -18,8 +18,8 @@ const {
 const NotFoundError = require('./Error/NotFoundError');
 
 const { PORT = 3000 } = process.env;
-app.use(cors());
 const app = express();
+app.use(cors());
 app.use(helmet());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
