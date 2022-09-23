@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
-// const { options } = require('./middlewares/cors');
+const { options } = require('./middlewares/cors');
 const { createUser, login } = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
@@ -19,7 +19,7 @@ const NotFoundError = require('./Error/NotFoundError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-app.use(cors());
+app.use('*', cors(options));
 app.use(helmet());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -30,7 +30,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('*', cors(options));
 
 app.use(requestLogger); // подключаем логгер запросов
 

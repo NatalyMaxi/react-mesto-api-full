@@ -7,6 +7,7 @@ class Api {
    //получим информацию о пользователе
    getUserInfo(jwt) {
       return fetch(`${this._baseUrl}/users/me`, {
+         credentials: 'include',
          headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${jwt}`,
