@@ -21,7 +21,7 @@
 
 JavaScript.  
 <img src="https://img.icons8.com/color/38/000000/javascript--v1.png"  
-alt="JS" width="20" height="20"/>
+alt="JS" width="20" height="20"/>..
 React.  
  <img src="https://img.icons8.com/ultraviolet/38/000000/react--v1.png"  
  alt="React" width="20" height="20"/>
