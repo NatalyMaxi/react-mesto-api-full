@@ -96,11 +96,11 @@ module.exports.updateUser = async (req, res, next) => {
       throw new NotFoundError('Пользователь не найден');
     }
     res.send({ data: user });
-  } catch (error) {
-    if (error.name === 'ValidationError') {
+  } catch (err) {
+    if (err.name === 'ValidationError') {
       next(new CastError('Переданы некорректные данные'));
     } else {
-      next(error);
+      next(err);
     }
   }
 };
