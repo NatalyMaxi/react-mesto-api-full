@@ -6,7 +6,7 @@
 
 Проект реализован по [макету](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1) в Figma.
 
-## :ticket: Функциональные возможности проекта:
+### :ticket: Функциональные возможности проекта:
 
 :ballot_box_with_check: Загрузка информации о пользователе с сервера  
  :ballot_box_with_check: Загрузка имеющихся карточек с сервера  
