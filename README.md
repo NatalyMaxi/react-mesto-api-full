@@ -28,7 +28,7 @@ Node.js <img src="https://img.icons8.com/color/38/000000/nodejs.png" alt="Node.j
 JSX <img src="https://media.united.com/images/Media%20Database/SDL/MileagePlus%20Partners/jsx-logo.jpg" alt="JSX" width="20" height="20"/>  
 Express.js <img src="https://avatars.mds.yandex.net/i?id=6f1a6bf3db1406597d918db19cb8178d021c1ece-7662747-images-thumbs&n=13&exp=1" alt="Express.js" width="20" height="20"/>  
 MongoDB <img src="https://my-dev.io/wp-content/uploads/2019/11/%D7%98%D7%9B%D7%A0%D7%9C%D7%95%D7%92%D7%99%D7%95%D7%AA_0018_mongodb-1024x1024.jpg"  alt="MongoDB" width="20" height="20"/>  
-CSS. Flex, Grid, @media <img src="https://img.icons8.com/color/36/000000/css3.png" alt="CSS. Flex, grid, @media" width="20" height="20"/>  
+CSS. Flex, @media <img src="https://img.icons8.com/color/36/000000/css3.png" alt="CSS. Flex, @media" width="20" height="20"/>  
 BEM nested <img src="https://img.icons8.com/office/30/000000/plugin.png" alt="BEM nested" width="20" height="20"/>  
 Figma <img src="https://img.icons8.com/color/32/000000/figma--v1.png" alt="Figma" width="20" height="20"/>  
 GitHub <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"  alt="GitHub" width="20" height="20"/>  
